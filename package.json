@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "nodemon dist index.js",
 		"build": "gulp",
-        "watch": "gulp.watch",
+		"watch": "gulp.watch",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Alejo Kim Uy",
