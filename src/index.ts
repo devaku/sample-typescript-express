@@ -7,6 +7,9 @@ dotenv.config();
 const PORT = process.env.PORT_BACKEND;
 
 import debug_routes from './routes/debug_routes';
+import test_routes from './routes/test_routes';
+
+app.use(test_routes);
 app.use(debug_routes);
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {

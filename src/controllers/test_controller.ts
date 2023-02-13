@@ -3,7 +3,7 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 import Controller from './controller';
 
-class Test implements Controller {
+class TestController implements Controller {
 	create(
 		req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
 		res: Response<any, Record<string, any>>,
@@ -18,7 +18,19 @@ class Test implements Controller {
 		res: Response<any, Record<string, any>>,
 		next: NextFunction
 	): void {
-		throw new Error('Method not implemented.');
+		try {
+			throw new Error('THIS IS AN ERROR');
+		} catch (error: any) {
+			const { stack, message } = error;
+			console.log(`Message: ${message}`);
+			console.log(`Stack: ${stack}`);
+
+			res.json({
+				status: 'error',
+				stack,
+				message,
+			});
+		}
 	}
 	update(
 		req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
@@ -35,3 +47,5 @@ class Test implements Controller {
 		throw new Error('Method not implemented.');
 	}
 }
+
+export default TestController;
